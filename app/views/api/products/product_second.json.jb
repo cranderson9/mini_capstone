@@ -1,0 +1,5 @@
+{
+  name: @product_second.name,
+  price: @product_second.price,
+  description: @product_second.description,
+}
