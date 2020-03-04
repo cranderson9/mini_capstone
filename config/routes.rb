@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   # namespace :api do
   #   get "/photos" => "photos#index"
   # end
+
+  namespace :api do
+    get "/mini_capstone" => "products#products_list"
+  end
 end
