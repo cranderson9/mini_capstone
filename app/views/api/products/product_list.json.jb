@@ -1,1 +1,9 @@
-{ message: "hello" }
+all_products = []
+
+@products.map do |product|
+  {
+    name: product.name,
+    price: product.price,
+    description: product.description,
+  }
+end
