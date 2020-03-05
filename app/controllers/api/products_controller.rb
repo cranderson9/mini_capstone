@@ -15,12 +15,14 @@ class Api::ProductsController < ApplicationController
   end
 
   def any_product
-    @product_name = params["name"]
-    @price = params[:price]
+    the_id = params[:id]
+    @product = Product.find_by(id: the_id)
     render "any_product.json.jb"
   end
 
   def all_products
+    @product = Product.first
     render "all_products.json.jb"
   end
 end
+    

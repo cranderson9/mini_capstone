@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     get "/product_first" => "products#product_first"
     get "/product_second" => "products#product_second"
     get "/any_product" => "products#any_product"
-    get "/all_products/:name" => "products#all_products"
+    get "/all_products/:id" => "products#any_product"
   end
 end
