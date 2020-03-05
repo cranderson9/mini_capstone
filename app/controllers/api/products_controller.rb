@@ -15,6 +15,12 @@ class Api::ProductsController < ApplicationController
   end
 
   def any_product
+    @product_name = params["name"]
+    @price = params[:price]
     render "any_product.json.jb"
+  end
+
+  def all_products
+    render "all_products.json.jb"
   end
 end
