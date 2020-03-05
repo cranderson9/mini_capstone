@@ -13,4 +13,8 @@ class Api::ProductsController < ApplicationController
     @product_second = Product.second
     render "product_second.json.jb"
   end
+
+  def any_product
+    render "any_product.json.jb"
+  end
 end
