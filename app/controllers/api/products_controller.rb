@@ -4,9 +4,7 @@ class Api::ProductsController < ApplicationController
     render "index.json.jb"
   end
 
-  def create
-    render "create.json.jb"
-  end
+  
 
   def show
     the_id = params[:id]
@@ -14,10 +12,23 @@ class Api::ProductsController < ApplicationController
     render "show.json.jb"
   end
 
+  
+
+  def create
+    @product = Product.new(
+      name: params[:input_name],
+      price: params[:input_price],
+      description: params[:input_description],
+      image_url: params[:input_image_url]
+    )
+    @product.save
+    render "show.json.jb"
+  end
+
   def update
     render "update.json.jb"
   end
-
+  
   def destroy
     render "destroy.json.jb"
   end
