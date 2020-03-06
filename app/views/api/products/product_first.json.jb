@@ -1,5 +1,0 @@
-{
-  name: @product_first.name,
-  price: @product_first.price,
-  description: @product_first.description
-}
