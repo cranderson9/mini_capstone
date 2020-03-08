@@ -29,10 +29,10 @@ class Api::ProductsController < ApplicationController
     the_id = params[:id]
     @product = Product.find_by(id: the_id) 
     
-    @product.name = params[:input_name] || @product.name 
-    @product.price = params[:input_price] || @product.price
-    @product.description = params[:input_description] || @product.description
-    @product.image_url = params[:input_image_url] || @product.image_url
+    @product.name = params[:name] || @product.name 
+    @product.price = params[:price] || @product.price
+    @product.description = params[:description] || @product.description
+    @product.image_url = params[:image_url] || @product.image_url
     
     @product.save
     render "show.json.jb"
