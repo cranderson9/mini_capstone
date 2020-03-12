@@ -21,7 +21,7 @@ class Api::ProductsController < ApplicationController
       image_url: params[:image_url]
     )
     if @product.save
-    render "show.json.jb"
+      render "show.json.jb"
     else
       render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
     end
@@ -37,15 +37,13 @@ class Api::ProductsController < ApplicationController
     
     if @product.save
       render "show.json.jb"
-      else
-        render json: {errors: @product.errors.full_messages}
+    else
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    the_id = params[:id]
-    @product = Product.find_by(id: the_id)
-
+    Product.find_by(id: params[:id])
     @product.destroy
     render "destroy.json.jb"
   end
