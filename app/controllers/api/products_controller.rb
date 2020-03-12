@@ -7,8 +7,7 @@ class Api::ProductsController < ApplicationController
   
 
   def show
-    the_id = params[:id]
-    @product = Product.find_by(id: the_id)
+    @product = Product.find_by(id: params[:id])
     render "show.json.jb"
   end
 
@@ -21,21 +20,26 @@ class Api::ProductsController < ApplicationController
       description: params[:description],
       image_url: params[:image_url]
     )
-    @product.save
+    if @product.save
     render "show.json.jb"
+    else
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def update
-    the_id = params[:id]
-    @product = Product.find_by(id: the_id) 
-    
-    @product.name = params[:name] || @product.name 
-    @product.price = params[:price] || @product.price
-    @product.description = params[:description] || @product.description
-    @product.image_url = params[:image_url] || @product.image_url
-    
-    @product.save
-    render "show.json.jb"
+    @product = Product.find_by(id: params[:id])
+    @product.update(
+      @product.name = params[:name] || @product.name 
+      @product.price = params[:price] || @product.price
+      @product.description = params[:description] || @product.description
+      @product.image_url = params[:image_url] || @product.image_url
+    )
+    if @product.save
+      render "show.json.jb"
+      else
+        render json: {errors: @product.errors.full_messages}
+    end
   end
 
   def destroy
