@@ -1,9 +1,9 @@
 class Api::ProductsController < ApplicationController
   def index
-    # @products = Product.all
+    @products = Product.all
     
     # @products = Product.where("name LIKE ?", "%#{params[:name]}%")
-    @products = Product.where("price < 10")
+    # @products = Product.where("price < 10")
 
     render "index.json.jb"
   end
