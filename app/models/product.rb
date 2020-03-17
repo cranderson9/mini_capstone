@@ -19,7 +19,11 @@ class Product < ApplicationRecord
     price + tax
   end
 
-  def supplier
-    Supplier.find_by(id: supplier_id).id
-  end
+  # def supplier
+  #   Supplier.find_by(id: supplier_id).id
+  # end
+
+  belongs_to :supplier
+  has_many :images
+
 end
