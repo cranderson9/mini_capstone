@@ -1,17 +1,17 @@
 class Api::ProductsController < ApplicationController
   def index
-    # @products = Product.where("price < 10")
-    # @products = Product.where('name LIKE ?', "%#{params[:search]}%")
+    @products = Product.where("price < 10")
+    @products = Product.where('name LIKE ?', "%#{params[:search]}%")
 
-    # if params[:discount] == 'true'
-    #   @products = @products.where("price < 10")
-    # end
+    if params[:discount] == 'true'
+      @products = @products.where("price < 10")
+    end
 
-    # if params[:sort] && params[:sort_order]
-    #   @products = @products.order(params[:sort] => params[:sort_order])
-    # else
-    #   @products = @products.order(:id)
-    # end
+    if params[:sort] && params[:sort_order]
+      @products = @products.order(params[:sort] => params[:sort_order])
+    else
+      @products = @products.order(:id)
+    end
 
     @products = Product.all
     render "index.json.jb"
@@ -31,7 +31,6 @@ class Api::ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      image_url: params[:image_url],
       supplier_id: params[:supplier_id]
     )
     if @product.save
@@ -47,7 +46,6 @@ class Api::ProductsController < ApplicationController
     @product.name = params[:name] || @product.name 
     @product.price = params[:price] || @product.price
     @product.description = params[:description] || @product.description
-    @product.image_url = params[:image_url] || @product.image_url
     @product.supplier_id = params[:supplier_id] || @product.supplier_id
     
     if @product.save
