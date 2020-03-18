@@ -8,24 +8,29 @@ Rails.application.routes.draw do
   # end
 
   namespace :api do
+    #products routes
     get "/products" => "products#index"
     post "/products" => "products#create"
     get "/products/:id" => "products#show"
     patch "/products/:id" => "products#update"
     delete "/products/:id" => "products#destroy"
-
+    #supplier routes
     get "/suppliers" => "suppliers#index"
     get "suppliers/:id" => "suppliers#show"
     post "suppliers" => "suppliers#create"
     patch "suppliers/:id" => "suppliers#update"
     delete "suppliers/:id" => "suppliers#destroy"
 
-
+    #login
     post "/users" => "users#create"
-
     post "/sessions" => "sessions#create"
-
+    #images
     post "/images" => "images#create"
     delete "/images/:id" => "images#destroy"
+
+    #orders
+    post "/orders" => "orders#create"
+    get "/orders/:id" => "orders#show"
+
   end
 end
