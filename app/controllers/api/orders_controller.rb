@@ -5,32 +5,37 @@ class Api::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
     if current_user
+      @orders = Order.all
       @orders = current_user.orders
+      render "index.json.jb"
     else
-      @orders = []
+      render json: {}, status: :unauthorized
     end
-    render "index.json.jb"
+    
   end
   
   def create
-    product = Product.find_by(id: params[:product_id])
-    the_subtotal = params[:quantity].to_i * product.price
-    tax = 0.09
-    the_tax = the_subtotal * tax
-    the_total = the_subtotal + the_tax
+    if current_user
+      product = Product.find_by(id: params[:product_id])
+      the_subtotal = params[:quantity].to_i * product.price
+      tax = 0.09
+      the_tax = the_subtotal * tax
+      the_total = the_subtotal + the_tax
 
-    @order = Order.new(
-      user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
-      subtotal: the_subtotal,
-      tax: the_tax,
-      total: the_total
-    )
-    @order.save
-    render "show.json.jb"
+      @order = Order.new(
+        user_id: current_user.id,
+        product_id: params[:product_id],
+        quantity: params[:quantity],
+        subtotal: the_subtotal,
+        tax: the_tax,
+        total: the_total
+      )
+      @order.save
+      render "show.json.jb"
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
   def update
