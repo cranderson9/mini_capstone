@@ -8,5 +8,5 @@
   tax: @order.tax,
   total: @order.total,
   current_user: current_user.id,
-  product: @order.product[:name]
+  product: @order.product
 }

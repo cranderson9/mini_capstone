@@ -15,13 +15,19 @@ class Api::OrdersController < ApplicationController
   end
   
   def create
+    product = Product.find_by(id: params[:product_id])
+    the_subtotal = params[:quantity].to_i * product.price
+    tax = 0.09
+    the_tax = the_subtotal * tax
+    the_total = the_subtotal + the_tax
+
     @order = Order.new(
-      user_id: params[:user_id],
+      user_id: current_user.id,
       product_id: params[:product_id],
       quantity: params[:quantity],
-      subtotal: params[:subtotal],
-      tax: params[:tax],
-      total: params[:total],
+      subtotal: the_subtotal,
+      tax: the_tax,
+      total: the_total
     )
     @order.save
     render "show.json.jb"
@@ -29,7 +35,7 @@ class Api::OrdersController < ApplicationController
 
   def update
     @order = Order.find_by(id: params[:id])
-    @order.user_id = params[:user_id] || @order.user_id
+    @order.user_id = current_user.id || @order.user_id
     @order.product_id = params[:product_id] || @order.product_id
     @order.quantity = params[:quantity] || @order.quantity
     @order.subtotal = params[:subtotal] || @order.subtotal

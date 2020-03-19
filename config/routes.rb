@@ -14,12 +14,13 @@ Rails.application.routes.draw do
     get "/products/:id" => "products#show"
     patch "/products/:id" => "products#update"
     delete "/products/:id" => "products#destroy"
+
     #supplier routes
     get "/suppliers" => "suppliers#index"
-    get "suppliers/:id" => "suppliers#show"
-    post "suppliers" => "suppliers#create"
-    patch "suppliers/:id" => "suppliers#update"
-    delete "suppliers/:id" => "suppliers#destroy"
+    get "/suppliers/:id" => "suppliers#show"
+    post "/suppliers" => "suppliers#create"
+    patch "/suppliers/:id" => "suppliers#update"
+    delete "/suppliers/:id" => "suppliers#destroy"
 
     #login
     post "/users" => "users#create"
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
     #orders
     post "/orders" => "orders#create"
     get "/orders/:id" => "orders#show"
-    get "orders/" => "orders#index"
+    get "/orders" => "orders#index"
     patch "/orders/:id" => "orders#update"
     delete "/orders/:id" => "orders#destroy"
   end
