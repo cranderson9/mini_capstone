@@ -6,6 +6,11 @@ class Api::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    if current_user
+      @orders = current_user.orders
+    else
+      @orders = []
+    end
     render "index.json.jb"
   end
   
