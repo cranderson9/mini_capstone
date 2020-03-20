@@ -1,7 +1,7 @@
 class Api::ProductsController < ApplicationController
-  def index
-   
+  before_action :authenticate_admin, only: [:create, :update, :destroy]
 
+  def index
     @products = Product.where("price < 10")
     @products = Product.where('name LIKE ?', "%#{params[:search]}%")
 

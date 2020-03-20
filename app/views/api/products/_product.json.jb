@@ -8,5 +8,5 @@
   total: product.total,
   supplier: product.supplier.name,
   images: product.images,
-  current_user: current_user.email 
+  current_user: current_user
 }
