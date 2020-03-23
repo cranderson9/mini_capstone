@@ -7,4 +7,8 @@
 # ])
 
 
-CartedProduct.create!(status: "carted", )
+CartedProduct.create!(status: "carted", user_id: 1, product_id: 3, quantity: 3,)
+CartedProduct.create!(status: "carted", user_id: 1, product_id: 18, quantity: 2,)
+CartedProduct.create!(status: "carted", user_id: 1, product_id: 1, quantity: 5,)
+
+

@@ -35,5 +35,8 @@ Rails.application.routes.draw do
     get "/orders" => "orders#index"
     patch "/orders/:id" => "orders#update"
     delete "/orders/:id" => "orders#destroy"
+
+    #carted_products
+    post "/carted_products" => "carted_products#create"
   end
 end
