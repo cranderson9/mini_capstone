@@ -20,7 +20,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "jwt"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem "actionview"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -42,3 +42,4 @@ gem 'http'
 gem 'rack-cors'
 gem 'jb'
 gem 'seed_dump'
+gem "actionview", ">= 6.0.2.2"
