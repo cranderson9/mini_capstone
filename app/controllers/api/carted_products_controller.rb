@@ -1,4 +1,14 @@
 class Api::CartedProductsController < ApplicationController
+  def index
+    # @carted_products = CartedProduct.all
+    if current_user
+      @carted_products = current_user.carted_products.where(status: "carted")
+      render "index.json.jb"
+    else
+      render json: {}, status: :unauthorized
+    end
+  end
+  
   def create
     @carted_product = CartedProduct.new(
       status: "carted", 
@@ -12,13 +22,5 @@ class Api::CartedProductsController < ApplicationController
     end
   end
 
-  def index
-    # @carted_products = CartedProduct.all
-    if current_user
-      @carted_products = current_user.carted_products
-      render "index.json.jb"
-    else
-      render json: {}, status: :unauthorized
-    end
-  end
+  
 end
