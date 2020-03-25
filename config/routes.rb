@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   #   get "/photos" => "photos#index"
   # end
 
+  get "/products" => "products#index"
+
   namespace :api do
     #products routes
     get "/products" => "products#index"
@@ -39,5 +41,6 @@ Rails.application.routes.draw do
     #carted_products
     post "/carted_products" => "carted_products#create"
     get "/carted_products" => "carted_products#index"
+    delete "/carted_products/:id" => "carted_products#destroy"
   end
 end

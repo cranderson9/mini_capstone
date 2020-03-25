@@ -42,4 +42,3 @@ gem 'http'
 gem 'rack-cors'
 gem 'jb'
 gem 'seed_dump'
-gem "actionview", ">= 6.0.2.2"

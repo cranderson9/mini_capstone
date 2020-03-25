@@ -22,5 +22,9 @@ class Api::CartedProductsController < ApplicationController
     end
   end
 
+  def destroy
+    
+    @carted_product.update
+  end
   
 end

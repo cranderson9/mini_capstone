@@ -34,7 +34,11 @@ class Api::OrdersController < ApplicationController
       tax: tax,
       total: total
     )
+    if current_user
       @order.save
+      @carted_products.each do |carted_product|
+        carted_product.update(order_id: @order_id, status: "purchased")
+      end
       render "show.json.jb"
     else
       render json: {}, status: :unauthorized
