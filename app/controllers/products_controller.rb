@@ -12,8 +12,7 @@ class ProductsController < ApplicationController
     @product = Product.new(
       name: params[:name],
       price: params[:price],
-      description: params[:description],
-      # supplier: params[:supplier]
+      description: params[:description]
     )
     @product.save!
     redirect_to "/products/#{@product.id}"
@@ -22,6 +21,27 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find_by(id: params[:id])
     render 'show.html.erb'
+  end
+
+  def edit
+    @product = Product.find_by(id: params[:id])
+    render 'edit.html.erb'
+  end
+
+  def update
+    @product = Product.find_by(id: params[:id])
+    @product.update(
+      name: params[:name],
+      price: params[:price],
+      description: params[:description]
+    )
+    redirect_to "/products/#{@product.id}"
+  end
+
+  def destroy
+    @product = Product.find_by(id: params[:id])
+    @product.destroy
+    redirect_to "/products"
   end
 
 

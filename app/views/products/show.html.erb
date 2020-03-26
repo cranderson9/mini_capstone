@@ -3,3 +3,12 @@
 <p> <%= @product.name %> </p>
 <p> <%= @product.price %> </p>
 <p> <%= @product.description %> </p>
+
+<a href="/products/<%= @product.id %>%">Edit this product</a>
+
+<form action="/products/<%= @product.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete this product">
+</form>
+
+
