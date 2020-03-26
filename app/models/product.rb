@@ -24,7 +24,7 @@ class Product < ApplicationRecord
   # end
 
   
-  belongs_to :supplier
+  # belongs_to :supplier
   has_many :images
   has_many :orders
   has_many :product_categories

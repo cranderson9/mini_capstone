@@ -8,8 +8,21 @@ class ProductsController < ApplicationController
     render 'new.html.erb'
   end
 
+  def create
+    @product = Product.new(
+      name: params[:name],
+      price: params[:price],
+      description: params[:description],
+      # supplier: params[:supplier]
+    )
+    @product.save!
+    redirect_to "/products/#{@product.id}"
+  end
+
   def show
     @product = Product.find_by(id: params[:id])
     render 'show.html.erb'
   end
+
+
 end
